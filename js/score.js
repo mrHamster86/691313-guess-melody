@@ -4,7 +4,7 @@ const GAME = {
   quickAnswer: 30
 };
 
-const getScore = (answers) => {
+export const getScore = (answers) => {
   const calculate = () => {
     let lives = GAME.lives;
     let result = 0;
