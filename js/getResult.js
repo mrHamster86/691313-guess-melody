@@ -12,6 +12,6 @@ const loser = (time) => {
   return (time === 0) ? messageTime : messageNote;
 };
 
-const getResult = (result, arrScope) => {
+export const getResult = (result, arrScope) => {
   return (result.scope > 0) ? winner(result.scope, arrScope) : loser(result.time);
 };
