@@ -1,8 +1,6 @@
 import {assert} from 'chai';
 import {getScore} from '../score.js';
 
-const assert = chai.assert;
-
 const answers1 = [
   {correct: true, time: 30},
   {correct: true, time: 30},
