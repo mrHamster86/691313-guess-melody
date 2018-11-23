@@ -20,7 +20,7 @@ const calculateScore = (answers) => {
     lives += (!it.correct) ? -1 : 0;
     if (lives < 0) break;
   }
-  return (lives < 0) ? -1 : result;
+  return (lives < 0) ? LOSING_SCORE : result;
 };
 
 const getScore = (answers) => {
