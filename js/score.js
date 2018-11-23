@@ -1,23 +1,28 @@
 const GAME = {
   lives: 2,
   numberQuestion: 10,
-  quickAnswer: 30
+  bonusTime: 30
+};
+const LOSING_SCORE = -1;
+const INCORRECT_POINTS = -2;
+
+const correctPoints = (time, bonusTime) => {
+  return (time >= bonusTime) ? 1 : 2;
 };
 
-export const getScore = (answers) => {
-  const calculate = () => {
-    let lives = GAME.lives;
-    let result = 0;
-    let i = 0;
-    
-    while (i < answers.length) {
-      result += (!answers[i].correct) ? -2 :
-                (answers[i].time >= GAME.quickAnswer) ? 1 : 2;
-      lives += (!answers[i].correct) ? -1 : 0;
-      if (lives < 0) break;
-      i++;
-    }
-    return (lives < 0) ? -1 : result;
-  };
-  return (answers.length < GAME.numberQuestion) ? -1 : calculate();
+const calculateScore = (answers) => {
+  let lives = GAME.lives;
+  let bonusTime = GAME.quickAnswer
+  let result = 0;
+
+  for (const it of answers) {
+    result += (!it.correct) ? INCORRECT_POINTS : correctPoints(it.time, bonusTime);
+    lives += (!it.correct) ? -1 : 0;
+    if (lives < 0) break;
+  }
+  return (lives < 0) ? -1 : result;
+};
+
+const getScore = (answers) => {
+  return (answers.length < GAME.numberQuestion) ? LOSING_SCORE : calculateScore(answers);
 };
