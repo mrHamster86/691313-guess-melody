@@ -1,9 +1,9 @@
-const winner = (scope, arrScope) => {
-  const newArr = arrScope.slice();
-  newArr.push(scope);
+const winner = (score, arrScore) => {
+  const newArr = arrScore.slice();
+  newArr.push(score);
   newArr.sort((a, b) => a - b);
-  const procentWinner = Math.round((newArr.indexOf(scope)) * 100 / newArr.length);
-  return `Вы заняли ${newArr.indexOf(scope)} место из ${newArr.length} игроков. Это лучше, чем у ${procentWinner}% игроков`; 
+  const procentWinner = Math.round((newArr.indexOf(score)) * 100 / newArr.length);
+  return `Вы заняли ${newArr.indexOf(score)} место из ${newArr.length} игроков. Это лучше, чем у ${procentWinner}% игроков`; 
 };
 
 const loser = (time) => {
@@ -12,6 +12,6 @@ const loser = (time) => {
   return (time === 0) ? messageTime : messageNote;
 };
 
-export const getResult = (result, arrScope) => {
-  return (result.scope > 0) ? winner(result.scope, arrScope) : loser(result.time);
+export const getResult = (result, arrScore) => {
+  return (result.score > 0) ? winner(result.score, arrScore) : loser(result.time);
 };
