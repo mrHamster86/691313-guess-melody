@@ -5,7 +5,7 @@ export const INITIAL_GAME = Object.freeze({
   levels: 10
 });
 
-expotr const changeLevel = (game, level) => {
+export const changeLevel = (game, level) => {
   if (typeof level !== `number`) {
     throw new Error(`Level should be of type number`);
   }
@@ -21,7 +21,7 @@ expotr const changeLevel = (game, level) => {
   return newGame;
 };
 
-expotr const changeLives = (game, lives) => {
+export const changeLives = (game, lives) => {
   if (typeof lives !== `number`) {
     throw new Error(`Lives should be of type number`);
   }
@@ -37,7 +37,7 @@ expotr const changeLives = (game, lives) => {
   return newGame;
 };
 
-expotr const changeTime = (game, time) => {
+export const changeTime = (game, time) => {
   if (typeof time !== `number`) {
     throw new Error(`Time should be of type number`);
   }
