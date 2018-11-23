@@ -36,7 +36,7 @@ describe(`Управление колличеством жизней игрок�
 
 describe(`Управление таймером`, () => {
   it(`Проверка изменения колличества секунд`, () => {
-    assert.equal(changeTime(INITIAL_GAME, 100).time, 1);
+    assert.equal(changeTime(INITIAL_GAME, 100).time, 100);
     assert.equal(changeTime(INITIAL_GAME, 0).time, 0);
   });
   it(`Таймер не может иметь отрицательное значение`, () => {
@@ -46,6 +46,6 @@ describe(`Управление таймером`, () => {
     assert.throws(() => changeTime(INITIAL_GAME, []).time, 0);
   });
   it(`Таймер не может иметь значение больще значения в начале`, () => {
-    assert.throws(() => changeTime(INITIAL_GAME, 11).time, 0);
+    assert.throws(() => changeTime(INITIAL_GAME, 400).time, 0);
   });
 });
