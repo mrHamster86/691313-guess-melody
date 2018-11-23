@@ -1,4 +1,4 @@
-expotr const INITIAL_GAME = {
+export const INITIAL_GAME = Object.freeze({
   level: 0,
   lives: 2,
   time: 300,
