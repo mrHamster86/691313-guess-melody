@@ -23,6 +23,6 @@ const calculateScore = (answers) => {
   return (lives < 0) ? LOSING_SCORE : result;
 };
 
-const getScore = (answers) => {
+export const getScore = (answers) => {
   return (answers.length < GAME.numberQuestion) ? LOSING_SCORE : calculateScore(answers);
 };
