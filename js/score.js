@@ -1,8 +1,7 @@
-const GAME = {
-  lives: 2,
-  numberQuestion: 10,
-  quickAnswer: 30
-};
+import {INITIAL_GAME} from '../game.js';
+
+const LEVELS = INITIAL_GAME.levels;
+const BONUS_TIME = 30;
 const LOSING_SCORE = -1;
 const INCORRECT_POINTS = -2;
 
@@ -11,12 +10,11 @@ const correctPoints = (time, bonusTime) => {
 };
 
 const calculateScore = (answers) => {
-  let lives = GAME.lives;
-  let bonusTime = GAME.quickAnswer
+  let lives = INITIAL_GAME.lives;
   let result = 0;
 
   for (const it of answers) {
-    result += (!it.correct) ? INCORRECT_POINTS : correctPoints(it.time, bonusTime);
+    result += (!it.correct) ? INCORRECT_POINTS : correctPoints(it.time, BONUS_TIME);
     lives += (!it.correct) ? -1 : 0;
     if (lives < 0) break;
   }
@@ -24,5 +22,5 @@ const calculateScore = (answers) => {
 };
 
 export const getScore = (answers) => {
-  return (answers.length < GAME.numberQuestion) ? LOSING_SCORE : calculateScore(answers);
+  return (answers.length < LEVELS) ? LOSING_SCORE : calculateScore(answers);
 };
