@@ -1,7 +1,7 @@
 const GAME = {
   lives: 2,
   numberQuestion: 10,
-  bonusTime: 30
+  quickAnswer: 30
 };
 const LOSING_SCORE = -1;
 const INCORRECT_POINTS = -2;
