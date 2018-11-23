@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {INITIAL_GAME, changeLevel, changeLives, changeTime} from '../gameState';
+import {INITIAL_GAME, changeLevel, changeLives, changeTime} from '../game.js';
 
 describe(`Проверка смены уровня`, () => {
   it(`Проверка изменения уровня`, () => {
