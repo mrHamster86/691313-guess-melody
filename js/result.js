@@ -3,7 +3,7 @@ const winner = (score, arrScore) => {
   newArr.push(score);
   newArr.sort((a, b) => a - b);
   const procentWinner = Math.round((newArr.indexOf(score)) * 100 / newArr.length);
-  return `Вы заняли ${newArr.indexOf(score)} место из ${newArr.length} игроков. Это лучше, чем у ${procentWinner}% игроков`; 
+  return `Вы заняли ${newArr.indexOf(score)} место из ${newArr.length} игроков. Это лучше, чем у ${procentWinner}% игроков`;
 };
 
 const loser = (time) => {
