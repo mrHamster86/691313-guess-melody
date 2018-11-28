@@ -16,11 +16,12 @@ const getGameGenre = (screen) => `<form class="game__tracks">
     <button class="game__submit button" type="submit">Ответить</button>
   </form>`;
 
-const element = renderScreen(getGameGenre(game[initialState.level]));
+export default () => {
+  const element = renderScreen(getGameGenre(game[initialState.level]));
 
-element.querySelector(`.game__submit`).addEventListener(`click`, () => {
-  initialState.level++;
-  changeScreen(gameScreen);
-});
-
-export default element;
+  element.querySelector(`.game__submit`).addEventListener(`click`, () => {
+    initialState.level++;
+    changeScreen(gameScreen());
+  });
+  return element;
+};

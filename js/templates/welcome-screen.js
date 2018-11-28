@@ -15,13 +15,11 @@ const getWelcomeScreen = (state) => `<section class="welcome">
   <p class="welcome__text">Удачи!</p>
 </section>`;
 
-const element = renderScreen(getWelcomeScreen(initialState));
+export default () => {
+  const element = renderScreen(getWelcomeScreen(initialState));
 
-const welcomeBtn = element.querySelector(`.welcome__button`);
-
-welcomeBtn.addEventListener(`click`, () => {
-  changeScreen(gameScreen);
-});
-
-export default element;
-
+  element.querySelector(`.welcome__button`).addEventListener(`click`, () => {
+    changeScreen(gameScreen());
+  });
+  return element;
+};

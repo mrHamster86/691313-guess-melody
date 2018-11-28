@@ -16,12 +16,14 @@ const getGameArtist = (screen) => `<div class="game__track">
     </div>`).join(``)}
   </form>`;
 
-const element = renderScreen(getGameArtist(game[initialState.level]));
+export default () => {
+  const element = renderScreen(getGameArtist(game[initialState.level]));
 
-element.querySelectorAll(`.artist`).forEach((it) => {
-  it.addEventListener(`click`, () => {
-    initialState.level++;
-    changeScreen(gameScreen);
+  element.querySelectorAll(`.artist`).forEach((it) => {
+    it.addEventListener(`click`, () => {
+      initialState.level++;
+      changeScreen(gameScreen());
+    });
   });
-});
-export default element;
+  return element
+};

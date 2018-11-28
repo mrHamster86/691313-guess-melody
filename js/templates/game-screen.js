@@ -4,7 +4,7 @@ import header from './game-header.js';
 import gameArtist from './game-artist.js';
 import gameGenre from './game-genre.js';
 
-const CURRENT_LEVEL = game[initialState.level];
+
 
 const getGameScreen = (screen) => `<section class="game ${screen.type}">
     <section class="game__screen">
@@ -12,12 +12,14 @@ const getGameScreen = (screen) => `<section class="game ${screen.type}">
     </section>
   </section>`;
 
-const element = renderScreen(getGameScreen(CURRENT_LEVEL));
-const screen = element.querySelector('.game');
-const gameScreen = screen.querySelector('.game__screen');
-const content = (CURRENT_LEVEL.type === `game--artist`) ? gameArtist : gameGenre;
+export default () => {
+  const CURRENT_LEVEL = game[initialState.level];
+  const element = renderScreen(getGameScreen(CURRENT_LEVEL));
+  const screen = element.querySelector('.game');
+  const gameScreen = screen.querySelector('.game__screen');
+  const content = (CURRENT_LEVEL.type === `game--artist`) ? gameArtist() : gameGenre();
 
-screen.insertAdjacentElement('beforebegin', header);
-gameScreen.insertAdjacentElement('beforeend', content);
-
-export default element;
+  screen.insertAdjacentElement('beforebegin', header);
+  gameScreen.insertAdjacentElement('beforeend', content);
+  return element;
+};

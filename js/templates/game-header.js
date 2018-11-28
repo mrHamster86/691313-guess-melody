@@ -29,7 +29,7 @@ const gameBackLink = element.querySelector(`.game__back`);
 
 gameBackLink.addEventListener(`click`, (evt) => {
   evt.preventDefault();
-  changeScreen(welcomeScreen);
+  changeScreen(welcomeScreen());
 });
 
 export default element;

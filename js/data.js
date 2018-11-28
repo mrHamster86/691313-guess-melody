@@ -19,7 +19,7 @@ export const game = [
     type: `game--artist`,
     title: `Кто исполняет эту песню?`,
     question: trackList[1],
-    answers: [trackList[1], trackList[4], trackList[5]],
+    answers: [trackList[1], trackList[0], trackList[3]],
   },
   {
     type: `game--artist`,
@@ -31,7 +31,7 @@ export const game = [
     type: `game--artist`,
     title: `Кто исполняет эту песню?`,
     question: trackList[3],
-    answers: [trackList[3], trackList[5], trackList[0]],
+    answers: [trackList[3], trackList[4], trackList[0]],
   },
   {
     type: `game--artist`,
