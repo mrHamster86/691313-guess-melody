@@ -17,7 +17,8 @@ const getGameArtist = (screen) => `<div class="game__track">
   </form>`;
 
 export default () => {
-  const element = renderScreen(getGameArtist(game[initialState.level]));
+  const CURRENT_LEVEL = game[initialState.level];
+  const element = renderScreen(getGameArtist(CURRENT_LEVEL));
 
   element.querySelectorAll(`.artist`).forEach((it) => {
     it.addEventListener(`click`, () => {

@@ -19,7 +19,7 @@ export default () => {
   const gameScreen = screen.querySelector('.game__screen');
   const content = (CURRENT_LEVEL.type === `game--artist`) ? gameArtist() : gameGenre();
 
-  screen.insertAdjacentElement('beforebegin', header);
+  screen.insertAdjacentElement('beforebegin', header());
   gameScreen.insertAdjacentElement('beforeend', content);
   return element;
 };

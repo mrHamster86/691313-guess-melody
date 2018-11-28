@@ -17,7 +17,8 @@ const getGameGenre = (screen) => `<form class="game__tracks">
   </form>`;
 
 export default () => {
-  const element = renderScreen(getGameGenre(game[initialState.level]));
+  const CURRENT_LEVEL = game[initialState.level];
+  const element = renderScreen(getGameGenre(CURRENT_LEVEL));
 
   element.querySelector(`.game__submit`).addEventListener(`click`, () => {
     initialState.level++;

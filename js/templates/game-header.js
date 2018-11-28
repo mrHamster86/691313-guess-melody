@@ -23,13 +23,14 @@ const getHeader = (state) => `<header class="game__header">
     </div>
   </header>`;
 
-const element = renderScreen(getHeader(initialState));
+export default () => {
+  const element = renderScreen(getHeader(initialState));
 
-const gameBackLink = element.querySelector(`.game__back`);
+  const gameBackLink = element.querySelector(`.game__back`);
 
-gameBackLink.addEventListener(`click`, (evt) => {
-  evt.preventDefault();
-  changeScreen(welcomeScreen());
-});
-
-export default element;
+  gameBackLink.addEventListener(`click`, (evt) => {
+    evt.preventDefault();
+    changeScreen(welcomeScreen());
+  });
+  return element;
+};
