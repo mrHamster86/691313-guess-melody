@@ -1,6 +1,7 @@
-import {renderScreen, changeScreen} from '../util.js';
-import {initialState, game} from '../data.js';
-import gameScreen from './game-screen.js';
+import {renderScreen} from '../util.js';
+import {GAME} from '../main.js';
+import changeGameScreen from '../change_game_screen.js';
+import {changeLives} from '../game.js';
 
 const getGameArtist = (screen) => `<div class="game__track">
     <button class="track__button track__button--play" type="button"></button>
@@ -16,15 +17,19 @@ const getGameArtist = (screen) => `<div class="game__track">
     </div>`).join(``)}
   </form>`;
 
-export default () => {
-  const CURRENT_LEVEL = game[initialState.level];
-  const element = renderScreen(getGameArtist(CURRENT_LEVEL));
+export default (state) => {
+  const currentLevel = GAME[state.level];
+  const element = renderScreen(getGameArtist(currentLevel));
 
   element.querySelectorAll(`.artist`).forEach((it) => {
     it.addEventListener(`click`, () => {
-      initialState.level++;
-      changeScreen(gameScreen());
+      if (it.querySelector(`img`).src === currentLevel.question.image) {
+        state.answers.push({correct: true, bonusTime: 30});
+      } else {
+        state.answers.push({correct: false, bonusTime: 30});
+      }
+      changeGameScreen(state);
     });
   });
-  return element
+  return element;
 };

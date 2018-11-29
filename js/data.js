@@ -1,14 +1,15 @@
 import trackList from './track-list.js';
 
-export const initialState = {
+export const INITIAL_GAME = Object.freeze({
   level: 0,
+  levels: 10,
   lives: 3,
   time: 300,
   bonusTime: 30,
   answers: []
-};
+});
 
-export const game = [
+export const GAME = [
   {
     type: `game--artist`,
     title: `Кто исполняет эту песню?`,

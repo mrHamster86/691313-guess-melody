@@ -8,8 +8,8 @@ const winner = (score, arrScore) => {
 
 const loser = (time) => {
   const messageTime = `Время вышло! Вы не успели отгадать все мелодии`;
-  const messageNote = `У вас закончились все попытки. Ничего, повезёт в следующий раз!`;
-  return (time === 0) ? messageTime : messageNote;
+  const messageLives = `У вас закончились все попытки. Ничего, повезёт в следующий раз!`;
+  return (time === 0) ? messageTime : messageLives;
 };
 
 export const getResult = (result, arrScore) => {

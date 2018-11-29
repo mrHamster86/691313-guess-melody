@@ -1,6 +1,6 @@
-import {renderScreen, changeScreen} from '../util.js';
-import {initialState, game} from '../data.js';
-import gameScreen from './game-screen.js';
+import {renderScreen} from '../util.js';
+import {GAME} from '../main.js';
+import changeGameScreen from '../change_game_screen.js';
 
 const getGameGenre = (screen) => `<form class="game__tracks">
   ${screen.answers.map((it, i) => `<div class="track">
@@ -16,13 +16,12 @@ const getGameGenre = (screen) => `<form class="game__tracks">
     <button class="game__submit button" type="submit">Ответить</button>
   </form>`;
 
-export default () => {
-  const CURRENT_LEVEL = game[initialState.level];
-  const element = renderScreen(getGameGenre(CURRENT_LEVEL));
+export default (state) => {
+  const currentLevel = GAME[state.level];
+  const element = renderScreen(getGameGenre(currentLevel));
 
   element.querySelector(`.game__submit`).addEventListener(`click`, () => {
-    initialState.level++;
-    changeScreen(gameScreen());
+    changeGameScreen(state);
   });
   return element;
 };

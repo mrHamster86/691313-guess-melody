@@ -1,6 +1,5 @@
 import {renderScreen, changeScreen} from '../util.js';
-import {initialState, game} from '../data.js';
-import welcomeScreen from './welcome-screen.js';
+import {INITIAL_GAME, welcomeScreen} from '../main.js';
 
 const getHeader = (state) => `<header class="game__header">
     <a class="game__back" href="#">
@@ -23,14 +22,14 @@ const getHeader = (state) => `<header class="game__header">
     </div>
   </header>`;
 
-export default () => {
-  const element = renderScreen(getHeader(initialState));
+export default (state) => {
+  const element = renderScreen(getHeader(state));
 
   const gameBackLink = element.querySelector(`.game__back`);
 
   gameBackLink.addEventListener(`click`, (evt) => {
     evt.preventDefault();
-    changeScreen(welcomeScreen());
+    changeScreen(welcomeScreen(INITIAL_GAME));
   });
   return element;
 };
