@@ -1,6 +1,6 @@
-import {renderScreen, changeScreen} from '../util.js';
-import declination from '../declination-numerals.js';
-import {gameScreen} from '../main.js';
+import {renderScreen, changeScreen} from '../../util.js';
+import declination from '../../declination-numerals.js';
+import {gameScreen} from '../templates.js';
 
 const getWelcomeScreen = (state) => `<section class="welcome">
   <div class="welcome__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>

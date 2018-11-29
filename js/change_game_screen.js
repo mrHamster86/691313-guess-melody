@@ -1,13 +1,19 @@
 import {changeLevel} from './game.js';
-import {gameScreen, resultScreen} from './main.js';
+import {gameScreen, resultScreen} from './templates/templates.js';
 import {changeScreen} from './util.js';
 
 export default (state) => {
-  if (state.level < 9) {
-    const newLevel = state.level + 1;
-    const newState = changeLevel(state, newLevel);
-    changeScreen(gameScreen(newState));
+
+  if (state.lives) {
+    if (state.level < 9) {
+      const newState = changeLevel(state, state.level + 1);
+      changeScreen(gameScreen(newState));
+    } else {
+      changeScreen(resultScreen(state));
+    }
+
   } else {
+
     changeScreen(resultScreen(state));
   }
 };

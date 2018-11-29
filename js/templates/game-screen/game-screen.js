@@ -1,5 +1,6 @@
-import {renderScreen} from '../util.js';
-import {GAME, gameArtist, gameGenre, gameHeader} from '../main.js';
+import {renderScreen} from '../../util.js';
+import {GAME_QUESTIONS} from '../../data/data.js';
+import {gameArtist, gameGenre, gameHeader} from '../templates.js';
 
 const getGameScreen = (screen) => `<section class="game ${screen.type}">
     <section class="game__screen">
@@ -8,12 +9,12 @@ const getGameScreen = (screen) => `<section class="game ${screen.type}">
   </section>`;
 
 export default (state) => {
-  const CURRENT_LEVEL = GAME[state.level];
+  const currentLevel = GAME_QUESTIONS[state.level];
 
-  const element = renderScreen(getGameScreen(CURRENT_LEVEL));
+  const element = renderScreen(getGameScreen(currentLevel));
   const screen = element.querySelector(`.game`);
   const gameScreen = screen.querySelector(`.game__screen`);
-  const content = (CURRENT_LEVEL.type === `game--artist`) ? gameArtist(state) : gameGenre(state);
+  const content = (currentLevel.type === `game--artist`) ? gameArtist(state) : gameGenre(state);
 
   screen.insertAdjacentElement(`beforebegin`, gameHeader(state));
   gameScreen.insertAdjacentElement(`beforeend`, content);

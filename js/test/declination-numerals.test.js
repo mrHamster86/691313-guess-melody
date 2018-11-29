@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {declinationNumerals} from '../declination-numerals.js';
+import declinationNumerals from '../declination-numerals.js';
 
 const arr = [`минута`, `минуты`, `минут`];
 

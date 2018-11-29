@@ -1,5 +1,6 @@
-import {renderScreen, changeScreen} from '../util.js';
-import {INITIAL_GAME, welcomeScreen} from '../main.js';
+import {renderScreen, changeScreen} from '../../util.js';
+import {INITIAL_GAME} from '../../data/data.js';
+import {welcomeScreen} from '../templates.js';
 
 const getHeader = (state) => `<header class="game__header">
     <a class="game__back" href="#">
