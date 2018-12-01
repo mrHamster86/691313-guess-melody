@@ -10,3 +10,14 @@ export const changeScreen = (element) => {
   mainElement.innerHTML = ``;
   mainElement.appendChild(element);
 };
+
+export const getParentHasClass = (element, isHasClass) => {
+  element = element.parentElement;
+  while (!element.classList.contains(isHasClass)) {
+    element = element.parentElement;
+    if (!element) {
+      break;
+    }
+  }
+  return element;
+};
