@@ -1,4 +1,4 @@
-import {INITIAL_DATA} from '../data/data.js';
+import {INITIAL_GAME} from '../data/data.js';
 
 const RADIUS = 370;
 const TIMER_LINE = document.querySelector(`.timer__line`);
@@ -15,7 +15,7 @@ export const getRadius = (ratioTime, radius) => {
 };
 
 export const getDash = (time) => {
-  const ratioTime = time / INITIAL_DATA.time;
+  const ratioTime = time / INITIAL_GAME.time;
   const dashState = getRadius(ratioTime, RADIUS);
 
   TIMER_LINE.setAtribute(`stroke-dasharray`, dashState.stroke);
