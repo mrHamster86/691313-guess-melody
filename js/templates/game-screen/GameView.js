@@ -17,15 +17,6 @@ export default class GameView extends AbstractView {
   }
 }
 
-
-
-
-// const getGameScreen = (screen) => `<section class="game ${screen.type}">
-//     <section class="game__screen">
-//       <h2 class="game__title">${screen.title}</h2>
-//     </section>
-//   </section>`;
-
 // export default (state) => {
 //   const currentLevel = GAME_QUESTIONS[state.level];
 

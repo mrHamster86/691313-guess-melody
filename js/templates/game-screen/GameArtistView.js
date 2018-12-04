@@ -24,13 +24,13 @@ export default class GameArtist extends AbstractView {
 </form>`;
   }
 
-  onAnswer(answer) {}
+  onAnswer() {}
 
   bind() {
     this.element.querySelectorAll(`.artist`).forEach((it) => {
-      it.addEventListener(`click`, () => {
+      it.addEventListener(`click`, (evt) => {
         evt.preventDefault();
-        this.onAnswer(answer);
+        this.onAnswer(it);
       });
     });
   }

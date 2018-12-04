@@ -1,8 +1,8 @@
 const render = (html) => {
   const wrapper = document.createElement(`div`);
   wrapper.innerHTML = html.trim();
-  return wrapper.firstChild;
-}
+  return wrapper;
+};
 
 export default class AbstractView {
   constructor() {
@@ -31,4 +31,4 @@ export default class AbstractView {
   bind(element) {
     // bind handlers if required
   }
-};
+}

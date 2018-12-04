@@ -24,15 +24,15 @@ export default class GameGenre extends AbstractView {
 </form>`;
   }
 
-  onAnswer(answer) {}
+  onAnswer() {}
 
   bind() {
-    this.element..querySelector(`.game__submit`).addEventListener(`click`, (evt) => {
+    this.element.querySelector(`.game__submit`).addEventListener(`click`, (evt) => {
       evt.preventDefault();
-      this.onAnswer(answer);
+      this.onAnswer();
     });
   }
-}
+};
 
 // const getGameGenre = (screen) => `<form class="game__tracks">
 //   ${screen.answers.map((it, i) => `<div class="track">
