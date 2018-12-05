@@ -18,7 +18,7 @@ export default class WelcomeView extends AbstractView {
     <li>Можно допустить ${this.state.lives} ${declination(this.state.lives, [`ошибка`, `ошибки`, `ошибок`])}.</li>
   </ul>
   <p class="welcome__text">Удачи!</p>
-</section>`
+</section>`;
   }
 
   onWelcomeBtn() {}
@@ -29,4 +29,4 @@ export default class WelcomeView extends AbstractView {
       this.onWelcomeBtn(this.state);
     });
   }
-};
+}

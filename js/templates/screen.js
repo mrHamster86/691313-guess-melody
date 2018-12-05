@@ -1,11 +1,12 @@
 import {changeLevel, changeLives} from '../game.js';
-import {changeScreen} from '../util.js';
+import {changeScreen, getParentHasClass} from '../util.js';
 import {INITIAL_GAME, GAME_QUESTIONS} from '../data/data.js';
 import WelcomeView from './welcome-screen/WelcomeView.js';
 import GameView from './game-screen/GameView.js';
 import GameArtistView from './game-screen/GameArtistView.js';
 import GameGenreView from './game-screen/GameGenreView.js';
 import GameHeaderView from './game-screen/GameHeaderView.js';
+import ResultView from './result-screen/ResultView.js';
 
 const LIVES_INCREMENT = 1;
 
@@ -16,16 +17,15 @@ export const changeGameScreen = (state) => {
       const newState = changeLevel(state, state.level + 1);
       changeScreen(gameScreen(newState).element);
     } else {
-      //changeScreen(resultScreen(state));
+      changeScreen(resultScreen(state).element);
     }
 
   } else {
-
-    changeScreen(resultScreen(state));
+    changeScreen(resultScreen(state).element);
   }
 };
 
-export const welcomeScreen = (state) => {
+export const welcomeScreen = () => {
   const screen = new WelcomeView(INITIAL_GAME);
 
   screen.onWelcomeBtn = (state) => {
@@ -38,10 +38,9 @@ export const welcomeScreen = (state) => {
 export const gameHeader = (state) => {
   const screen = new GameHeaderView(state);
 
-  screen.element.querySelector(`.game__back`).addEventListener(`click`, (evt) => {
-    evt.preventDefault();
-    changeScreen(welcomeScreen(INITIAL_GAME));
-  });
+  screen.onGameBackBtn = () => {
+    changeScreen(welcomeScreen(INITIAL_GAME).element);
+  };
   return screen;
 };
 
@@ -65,7 +64,6 @@ export const gameArtist = (state) => {
 
 export const gameGenre = (state) => {
   const screen = new GameGenreView(state);
-  const currentLevel = GAME_QUESTIONS[state.level];
 
   screen.onAnswer = () => {
     const answersGame = GAME_QUESTIONS[state.level].question.map((it) => it.src);
@@ -99,6 +97,16 @@ export const gameScreen = (state) => {
 
   screen.element.insertAdjacentElement(`afterbegin`, gameHeader(state).element);
   screen.element.querySelector(`.game__screen`).insertAdjacentElement(`beforeend`, content);
+
+  return screen;
+};
+
+export const resultScreen = (state) => {
+  const screen = new ResultView(state);
+
+  screen.onReplayBtn = () => {
+    changeScreen(welcomeScreen(INITIAL_GAME).element);
+  };
 
   return screen;
 };
