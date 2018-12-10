@@ -1,7 +1,7 @@
 import AbstractView from '../AbstractView.js';
 import {GAME_QUESTIONS} from '../../data/data.js';
 
-export default class GameArtist extends AbstractView {
+export default class ArtistView extends AbstractView {
   constructor(state) {
     super();
     this.state = state;

@@ -13,12 +13,8 @@ export const getRadius = (ratioTime, radius) => {
 
 export const getDash = (time) => {
   const RADIUS = 370;
-  const TIMER_LINE = document.querySelector(`.timer__line`);
 
   const ratioTime = time / INITIAL_GAME.time;
-  const dashState = getRadius(ratioTime, RADIUS);
-
-  TIMER_LINE.setAtribute(`stroke-dasharray`, dashState.stroke);
-  TIMER_LINE.setAtribute(`stroke-dashoffset`, dashState.offset);
+  return getRadius(ratioTime, RADIUS);
 };
 

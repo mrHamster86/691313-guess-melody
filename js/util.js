@@ -1,4 +1,5 @@
 const mainElement = document.querySelector(`.main`);
+const SECOND_PER_MINUTE = 60;
 
 export const renderScreen = (template) => {
   const wrapper = document.createElement(`div`);
@@ -20,4 +21,16 @@ export const getParentHasClass = (element, isHasClass) => {
     }
   }
   return element;
+};
+
+export const timeConverter = (second) => {
+  const time = {};
+
+  const minutes = `${Math.floor(second / SECOND_PER_MINUTE)}`;
+  const seconds = `${second % SECOND_PER_MINUTE}`;
+
+  time.minutes = (minutes.length > 1) ? `${minutes}` : `0${minutes}`;
+  time.seconds = (seconds.length > 1) ? `${seconds}` : `0${seconds}`;
+
+  return time;
 };

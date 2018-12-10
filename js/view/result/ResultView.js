@@ -13,7 +13,6 @@ export default class ResultScreen extends AbstractView {
     this.result.lives = state.lives;
     this.result.time = state.time;
     this.result.fail = INITIAL_GAME.lives - state.lives;
-
     this.resultData = getGameResult(this.result, statistics);
   }
 
@@ -22,8 +21,8 @@ export default class ResultScreen extends AbstractView {
   <div class="result__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
   <h2 class="result__title">${this.resultData.title}</h2>
   <p class="result__text">${this.resultData.content}</p>
-  ${(this.result.score) ? `<p class="result__total">${getGameStatistics(this.result)}</p>` : ``}
-  <button class="result__replay" type="button">${(this.result.score) ? `Сыграть ещё раз` : `Попробовать ещё раз`}</button>
+  ${(this.result.score > 0) ? `<p class="result__total">${getGameStatistics(this.result)}</p>` : ``}
+  <button class="result__replay" type="button">${(this.result.score > 0) ? `Сыграть ещё раз` : `Попробовать ещё раз`}</button>
 </section>`;
   }
 
