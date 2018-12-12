@@ -1,5 +1,5 @@
-import AbstractView from '../AbstractView.js';
-import {GAME_QUESTIONS} from '../../data/data.js';
+import AbstractView from './abstract-view';
+import GAME_QUESTIONS from '../data/questions';
 
 export default class GameView extends AbstractView {
   constructor(state) {

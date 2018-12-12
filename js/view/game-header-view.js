@@ -1,6 +1,6 @@
-import {timeConverter} from '../../util';
-import {getDash} from '../../animation/animation';
-import AbstractView from '../AbstractView';
+import {timeConverter} from '../util';
+import {getDash} from '../animation/timer-animation';
+import AbstractView from './abstract-view';
 
 export default class HeaderView extends AbstractView {
   constructor(state) {

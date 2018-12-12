@@ -1,9 +1,8 @@
-import {INITIAL_GAME} from './data/data.js';
 import {changeScreen} from './util';
-import GameModal from './data/GameModal';
-import WelcomePresenter from './presenter/welcome/WelcomePresenter';
-import GamePresenter from './presenter/game/GamePresenter';
-import ResultPresenter from './presenter/result/ResultPresenter';
+import GameModel from './model/game-model';
+import WelcomePresenter from './presenter/welcome-presenter';
+import GamePresenter from './presenter/game-presenter';
+import ResultPresenter from './presenter/result-presenter';
 
 export default class App {
 
@@ -13,14 +12,13 @@ export default class App {
   }
 
   static showGame() {
-    const gameScreen = new GamePresenter(new GameModal());
-    changeScreen(gameScreen.element);
+    const gameScreen = new GamePresenter(new GameModel());
     gameScreen.startGame();
+    changeScreen(gameScreen.element);
   }
 
-  static showStats(stats) {
-    console.log('!!!!!!!')
-    const statistics = new ResultPresenter(stats);
+  static showStats(result) {
+    const statistics = new ResultPresenter(result);
     changeScreen(statistics.element);
   }
 

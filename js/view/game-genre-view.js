@@ -1,11 +1,9 @@
-import AbstractView from '../AbstractView.js';
-import {GAME_QUESTIONS} from '../../data/data.js';
+import AbstractView from './abstract-view';
 
 export default class GenreView extends AbstractView {
-  constructor(state) {
+  constructor(level) {
     super();
-    this.state = state;
-    this.level = GAME_QUESTIONS[state.level];
+    this.level = level;
   }
 
   get template() {

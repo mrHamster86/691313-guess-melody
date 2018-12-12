@@ -1,13 +1,8 @@
-const mainElement = document.querySelector(`.main`);
 const SECOND_PER_MINUTE = 60;
 
-export const renderScreen = (template) => {
-  const wrapper = document.createElement(`div`);
-  wrapper.innerHTML = template.trim();
-  return wrapper;
-};
-
 export const changeScreen = (element) => {
+  const mainElement = document.querySelector(`.main`);
+
   mainElement.innerHTML = ``;
   mainElement.appendChild(element);
 };
@@ -33,4 +28,9 @@ export const timeConverter = (second) => {
   time.seconds = (seconds.length > 1) ? `${seconds}` : `0${seconds}`;
 
   return time;
+};
+
+export const declination = (n, numeralArr) => {
+  const key = [2, 0, 1, 1, 1, 2];
+  return numeralArr[(n % 100 > 4 && n % 100 < 20) ? 2 : key[(n % 10 < 5) ? n % 10 : 5]];
 };

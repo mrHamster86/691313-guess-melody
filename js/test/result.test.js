@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {getGameResult} from '../result.js';
+import {getGameResult} from '../data/game-result';
 
 const plaerResult1 = {score: 10, lives: 1, time: 10};
 const plaerResult2 = {score: -1, lives: 1, time: 0};

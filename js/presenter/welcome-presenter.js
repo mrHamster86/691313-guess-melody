@@ -1,6 +1,6 @@
-import {INITIAL_GAME} from '../../data/data.js';
-import WelcomeView from '../../view/welcome/WelcomeView';
-import App from '../../App';
+import INITIAL_GAME from '../data/data';
+import WelcomeView from '../view/welcome-view';
+import App from '../app';
 
 export default class WelcomePresenter {
   constructor() {

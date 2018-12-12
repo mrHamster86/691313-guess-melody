@@ -1,4 +1,4 @@
-import {INITIAL_GAME} from '../data/data.js';
+import INITIAL_GAME from '../data/data.js';
 
 const getCircumference = (radius) => Math.round(2 * Math.PI * radius);
 
