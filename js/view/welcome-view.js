@@ -1,5 +1,5 @@
-import AbstractView from '../AbstractView.js';
-import declination from '../../declination-numerals.js';
+import AbstractView from './abstract-view';
+import {declination} from '../util';
 
 export default class WelcomeView extends AbstractView {
   constructor(initialState) {

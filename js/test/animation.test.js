@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {getRadius} from '../animation/animation.js';
+import {getRadius} from '../animation/timer-animation';
 
 describe(`Function should correctly calculate circle length`, () => {
   describe(`Normal cases`, () => {

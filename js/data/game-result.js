@@ -1,5 +1,3 @@
-import declination from './declination-numerals.js';
-
 const winnerContent = (score, arrScore) => {
   const data = {};
   const newArr = arrScore.slice();
@@ -28,13 +26,4 @@ const loserContent = (time) => {
 
 export const getGameResult = (result, arrScore) => {
   return (result.score > 0) ? winnerContent(result.score, arrScore) : loserContent(result.time);
-};
-
-export const getGameStatistics = (result) => {
-  const minutes = Math.floor(result.time / 60);
-  const seconds = result.time % 60;
-  const statistics = `За ${minutes} ${declination(minutes, [`минуту`, `минуты`, `минут`])} и ${seconds} ${declination(minutes, [`секунду`, `секунды`, `секунд`])}
-    вы набрали ${result.score} ${declination(result.score, [`балл`, `балла`, `баллов`])} (8 быстрых),
-    совершив ${result.fail} ${declination(result.fail, [`ошибка`, `ошибки`, `ошибок`])}`;
-  return statistics;
 };
