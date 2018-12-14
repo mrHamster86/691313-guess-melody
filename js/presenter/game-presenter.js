@@ -1,19 +1,19 @@
-import {getParentHasClass} from '../util';
+import {showModal, changeScreen} from '../util';
+import ModalConfirmView from '../view/modal-confirm-view';
 import GameView from '../view/game-view';
 import HeaderView from '../view/game-header-view';
 import GenreView from '../view/game-genre-view';
 import ArtistView from '../view/game-artist-view';
 import App from '../app';
 
-import {changeScreen} from '../util';
-
 export default class GamePresenter {
   constructor(model) {
     this.model = model;
 
-    this.view = new GameView(this.model.state);
+    this.modalConfirm = new ModalConfirmView();
+    this.view = new GameView(this.model.curentLevel);
     this.gameHeader = new HeaderView(this.model.state);
-    this.gameContent = (this.model.isGameArtist()) ? new ArtistView(this.model.curentLevel()) : new GenreView(this.model.curentLevel());
+    this.gameContent = (this.model.isGameArtist()) ? new ArtistView(this.model.curentLevel) : new GenreView(this.model.curentLevel);
 
     this.view.element.insertAdjacentElement(`afterbegin`, this.gameHeader.element);
     this.view.element.querySelector(`.game__screen`).insertAdjacentElement(`beforeend`, this.gameContent.element);
@@ -69,17 +69,14 @@ export default class GamePresenter {
   }
 
   getAnswerArtist(element) {
-    return element.querySelector(`img`).src;
+    return element.querySelector(`.artist__input`).value.split(`-`)[1];
   }
 
   getAnswersGenre() {
     const checkbox = this.view.element.querySelectorAll(`input:checked`);
     const listAnswers = [];
-    for (let i = 0; i < checkbox.length; i++) {
-      let it = checkbox[i];
-      const audioSrc = getParentHasClass(it, `track`).querySelector(`audio`).src;
-      listAnswers.push(audioSrc);
-    }
+
+    checkbox.forEach((it) => listAnswers.push(it.value.split(`-`)[1]));
     return listAnswers.join(`,`);
   }
 
@@ -100,11 +97,32 @@ export default class GamePresenter {
   }
 
   restart() {
-    this.gameHeader.onGameBackBtn = () => App.showWelcome();
+    this.gameHeader.onGameBackBtn = () => {
+      this.stopGame();
+      showModal(this.modalConfirm.element);
+    };
   }
 
   bind() {
     this.gameContent.onAnswer = (element) => this.answer(element);
+
+    this.gameContent.onCheckbox = () => {
+      if (this.getAnswersGenre().length > 0) {
+        this.element.querySelector(`.game__submit`).disabled = false;
+      } else {
+        this.element.querySelector(`.game__submit`).disabled = true;
+      }
+    };
+
+    this.modalConfirm.onCancel = () => {
+      this.startGame();
+      this.modalConfirm.element.remove();
+    };
+
+    this.modalConfirm.onConfirm = () => {
+      this.modalConfirm.element.remove();
+      App.start();
+    };
   }
 
   timeOut() {

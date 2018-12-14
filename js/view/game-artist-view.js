@@ -1,4 +1,5 @@
 import AbstractView from './abstract-view';
+import {DEBUG, DEBUG_STYLE} from '../settings';
 
 export default class ArtistView extends AbstractView {
   constructor(level) {
@@ -7,19 +8,21 @@ export default class ArtistView extends AbstractView {
   }
 
   get template() {
-    return `<div class="game__track">
-  <button class="track__button track__button--play" type="button"></button>
-  <audio src="${this.level.question.src}"></audio>
-</div>
-<form class="game__artist">
-  ${this.level.answers.map((it, i) => `<div class="artist">
-    <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-${i}" id="answer-${i}">
-    <label class="artist__name" for="answer-${i}">
-      <img class="artist__picture" src="${it.image}" alt="${it.artist}">
-      ${it.artist}
-    </label>
-  </div>`).join(``)}
-</form>`;
+    return `<div>
+  <div class="game__track">
+    <button class="track__button track__button--play" type="button"></button>
+    <audio src="${this.level.src}"></audio>
+  </div>
+  <form class="game__artist">
+    ${this.level.answers.map((it, i) => `<div class="artist">
+      <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-${i}" id="answer-${i}">
+      <label class="artist__name" for="answer-${i}" >
+        <img class="artist__picture" src="${it.image.url}" alt="${it.title}" ${(DEBUG && it.isCorrect) ? DEBUG_STYLE : ``}>
+        ${it.title}
+      </label>
+    </div>`).join(``)}
+  </form>
+</div>`;
   }
 
   onAnswer() {}

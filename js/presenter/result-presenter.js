@@ -13,6 +13,6 @@ export default class ResultPresenter {
   }
 
   bind() {
-    this.view.onReplayBtn = () => App.showWelcome();
+    this.view.onReplayBtn = () => App.start();
   }
 }

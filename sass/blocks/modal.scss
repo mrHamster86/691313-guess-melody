@@ -19,6 +19,8 @@
   border: 5px solid rgba(0, 0, 0, 0.8);
   border-radius: 50px;
 
+  -webkit-animation: bounce 0.6s;
+
   animation: bounce 0.6s;
 
   &--hidden {
