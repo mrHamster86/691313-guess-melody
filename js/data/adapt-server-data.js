@@ -12,7 +12,7 @@ const preprocessAnswers = (genre, answers) => answers.map((answer) => {
 });
 
 export const adaptServerData = (data) => {
-  for (const level of Object.values(data)) {
+  for (const level of data) {
     if (level.type === QuestionType.GENRE) {
       level.answers = preprocessAnswers(level.genre, level.answers);
     }

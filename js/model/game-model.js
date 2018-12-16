@@ -28,7 +28,6 @@ export default class GameModel {
     result.fail = INITIAL_GAME.lives - this._state.lives;
     result.time = this._state.time;
     result.data = getGameResult(result, statistics);
-
     return result;
   }
   // сбрасывает состояние

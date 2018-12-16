@@ -14,8 +14,6 @@ const checkStatus = (response) => {
   }
 };
 
-let gameQuestions;
-
 export default class App {
 
   static start() {
@@ -25,9 +23,9 @@ export default class App {
     window.fetch(`https://es.dump.academy/guess-melody/questions`)
       .then(checkStatus)
       .then((response) => response.json())
-      .then((data) => gameQuestions = adaptServerData(data))
-      .catch((error) => App.showError(error))
-      .then(() => welcome.onWelcomeBtnActive());
+      .then((data) => this.data = adaptServerData(data))
+      .then(() => welcome.onWelcomeBtnActive())
+      .catch((error) => App.showError(error));
   }
 
   static showGame(data) {
@@ -47,7 +45,7 @@ export default class App {
   }
 
   static getGameQuestions() {
-    return gameQuestions;
+    return this.data;
   }
 
 }

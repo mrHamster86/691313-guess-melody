@@ -14,9 +14,8 @@ const calculateScore = (answers) => {
   let result = 0;
 
   for (const it of answers) {
-    result += (!it.correct) ? INCORRECT_POINTS : correctPoints(it.time);
+    result += (!it.correct) ? INCORRECT_POINTS : correctPoints(it.bonusTime);
     lives += (!it.correct) ? -1 : 0;
-
     if (lives <= 0) {
       break;
     }

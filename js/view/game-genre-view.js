@@ -27,6 +27,8 @@ export default class GenreView extends AbstractView {
 
   onCheckbox() {}
 
+  onPlayPause() {}
+
   bind() {
     this.element.querySelectorAll(`.game__input`).forEach((it) => {
       it.addEventListener(`change`, () => {
@@ -37,6 +39,16 @@ export default class GenreView extends AbstractView {
     this.element.querySelector(`.game__submit`).addEventListener(`click`, (evt) => {
       evt.preventDefault();
       this.onAnswer();
+    });
+
+    this.element.querySelectorAll(`.track`).forEach((it) => {
+      it.querySelector(`.track__button`).addEventListener(`click`, (evt) => {
+        const btn = evt.target;
+        const audio = it.querySelector(`audio`);
+
+        evt.preventDefault();
+        this.onPlayPause(btn, audio);
+      });
     });
   }
 }

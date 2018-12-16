@@ -48,6 +48,7 @@ export default class GamePresenter {
     } else {
       this.endGame();
     }
+    this.audioClear();
   }
 
   updateHeader() {
@@ -103,8 +104,33 @@ export default class GamePresenter {
     };
   }
 
+  audioClear() {
+    delete this.audio;
+    delete this.btn;
+  }
+
+  audioPlaer(btn, audio) {
+    if (btn.classList.contains(`track__button--play`)) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+    btn.classList.toggle(`track__button--play`);
+    btn.classList.toggle(`track__button--pause`);
+  }
+
+  audioControl(btn, audio) {
+    if (this.audio && this.audio !== audio) {
+      this.audioPlaer(this.btn, this.audio);
+    }
+    this.btn = btn;
+    this.audio = audio;
+    this.audioPlaer(this.btn, this.audio);
+  }
+
   bind() {
     this.gameContent.onAnswer = (element) => this.answer(element);
+    this.gameContent.onPlayPause = (btn, audio) => this.audioControl(btn, audio);
 
     this.gameContent.onCheckbox = () => {
       if (this.getAnswersGenre().length > 0) {
@@ -123,6 +149,7 @@ export default class GamePresenter {
       this.modalConfirm.element.remove();
       App.start();
     };
+
   }
 
   timeOut() {

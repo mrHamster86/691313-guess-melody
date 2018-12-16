@@ -27,12 +27,21 @@ export default class ArtistView extends AbstractView {
 
   onAnswer() {}
 
+  onPlayPause() {}
+
   bind() {
     this.element.querySelectorAll(`.artist`).forEach((it) => {
       it.addEventListener(`click`, (evt) => {
         evt.preventDefault();
         this.onAnswer(it);
       });
+    });
+    this.element.querySelector(`.track__button`).addEventListener(`click`, (evt) => {
+      const btn = evt.target;
+      const audio = this.element.querySelector(`audio`);
+
+      evt.preventDefault();
+      this.onPlayPause(btn, audio);
     });
   }
 }
