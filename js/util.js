@@ -1,10 +1,12 @@
 const SECOND_PER_MINUTE = 60;
+const BODY = document.querySelector(`body`);
+const MAIN_ELEMENT = document.querySelector(`.main`);
+
+export const showModal = (element) => BODY.appendChild(element);
 
 export const changeScreen = (element) => {
-  const mainElement = document.querySelector(`.main`);
-
-  mainElement.innerHTML = ``;
-  mainElement.appendChild(element);
+  MAIN_ELEMENT.innerHTML = ``;
+  MAIN_ELEMENT.appendChild(element);
 };
 
 export const getParentHasClass = (element, isHasClass) => {

@@ -1,17 +1,15 @@
 import AbstractView from './abstract-view';
-import GAME_QUESTIONS from '../data/questions';
 
 export default class GameView extends AbstractView {
-  constructor(state) {
+  constructor(level) {
     super();
-    this.state = state;
-    this.level = GAME_QUESTIONS[state.level];
+    this.level = level;
   }
 
   get template() {
-    return `<section class="game ${this.level.type}">
+    return `<section class="game game--${this.level.type}">
   <section class="game__screen">
-    <h2 class="game__title">${this.level.title}</h2>
+    <h2 class="game__title">${this.level.question}</h2>
   </section>
 </section>`;
   }

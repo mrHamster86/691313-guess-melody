@@ -13,7 +13,11 @@ export default class WelcomePresenter {
     return this.view.element;
   }
 
+  onWelcomeBtnActive() {
+    this.element.querySelector(`.welcome__button`).disabled = false;
+  }
+
   bind() {
-    this.view.onWelcomeBtn = () => App.showGame();
+    this.view.onWelcomeBtn = () => App.showGame(App.getGameQuestions());
   }
 }
