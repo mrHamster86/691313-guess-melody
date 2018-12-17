@@ -36,10 +36,7 @@ export default class App {
   }
 
   static showStats(result) {
-    this.result = {
-      score: result.score,
-      time: result.time
-    };
+    this.result = result;
 
     if (this.result.score > 0) {
       Loader.saveResults(this.result)
