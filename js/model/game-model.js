@@ -1,6 +1,5 @@
 import INITIAL_GAME from '../data/data';
 import {changeLevel, changeLives, changeTime} from '../data/gameplay';
-import {getGameResult} from '../data/game-result';
 import {getGameScore} from '../data/game-score';
 
 const statistics = [4, 5, 8, 10, 11];
@@ -27,7 +26,6 @@ export default class GameModel {
     result.lives = this._state.lives;
     result.fail = INITIAL_GAME.lives - this._state.lives;
     result.time = this._state.time;
-    result.data = getGameResult(result, statistics);
     return result;
   }
   // сбрасывает состояние

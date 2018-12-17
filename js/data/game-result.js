@@ -1,8 +1,10 @@
-const winnerContent = (score, arrScore) => {
+const winnerContent = (score, statistics) => {
+  console.log(statistics)
   const data = {};
-  const newArr = arrScore.slice();
-  newArr.push(score);
+
+  const newArr = statistics.map((it) => it.score);
   newArr.sort((a, b) => a - b);
+  console.log(newArr)
   const procentWinner = Math.round((newArr.indexOf(score)) * 100 / newArr.length);
 
   data.title = `Вы настоящий меломан!`;
@@ -24,6 +26,7 @@ const loserContent = (time) => {
   return data;
 };
 
-export const getGameResult = (result, arrScore) => {
-  return (result.score > 0) ? winnerContent(result.score, arrScore) : loserContent(result.time);
+export const getGameResult = (result, statistics) => {
+  console.log(statistics)
+  return (result.score > 0) ? winnerContent(result.score, statistics) : loserContent(result.time);
 };

@@ -1,18 +1,11 @@
 import {changeScreen, showModal} from './util';
+import {getGameResult} from './data/game-result';
 import GameModel from './model/game-model';
 import WelcomePresenter from './presenter/welcome-presenter';
 import GamePresenter from './presenter/game-presenter';
 import ResultPresenter from './presenter/result-presenter';
 import ModalErrorView from './view/modal-error-view';
-import {adaptServerData} from './data/adapt-server-data';
-
-const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-};
+import Loader from './loader';
 
 export default class App {
 
@@ -20,12 +13,15 @@ export default class App {
     const welcome = new WelcomePresenter();
     changeScreen(welcome.element);
 
-    window.fetch(`https://es.dump.academy/guess-melody/questions`)
-      .then(checkStatus)
-      .then((response) => response.json())
-      .then((data) => this.data = adaptServerData(data))
+    Loader.loadData()
+      .then((data) => this.gameQuestions = data)
       .then(() => welcome.onWelcomeBtnActive())
-      .catch((error) => App.showError(error));
+      .catch(App.showError);
+  }
+
+  static showWelcome() {
+    const gameScreen = new WelcomePresenter();
+    changeScreen(gameScreen.element);
   }
 
   static showGame(data) {
@@ -34,18 +30,32 @@ export default class App {
     changeScreen(gameScreen.element);
   }
 
+  static showResult(data) {
+    const resultScreen = new ResultPresenter(data);
+    changeScreen(resultScreen.element);
+  }
+
   static showStats(result) {
-    const statistics = new ResultPresenter(result);
-    changeScreen(statistics.element);
+    this.result = {
+      score: result.score,
+      time: result.time
+    };
+
+    if (this.result.score > 0) {
+      Loader.saveResults(this.result)
+        .then(() => Loader.loadResults())
+        .then((statistics) => this.result.data = getGameResult(this.result, statistics))
+        .then(() => this.showResult(this.result))
+        .catch(App.showError);
+    } else {
+      this.result.data = getGameResult(this.result);
+      this.showResult(this.result);
+    }
   }
 
   static showError(error) {
     const errorView = new ModalErrorView(error);
     showModal(errorView.element);
-  }
-
-  static getGameQuestions() {
-    return this.data;
   }
 
 }
