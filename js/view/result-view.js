@@ -19,8 +19,6 @@ export default class ResultScreen extends AbstractView {
 </section>`;
   }
 
-
-
   onReplayBtn() {}
 
   bind() {

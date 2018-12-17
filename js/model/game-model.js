@@ -2,8 +2,6 @@ import INITIAL_GAME from '../data/data';
 import {changeLevel, changeLives, changeTime} from '../data/gameplay';
 import {getGameScore} from '../data/game-score';
 
-const statistics = [4, 5, 8, 10, 11];
-
 export default class GameModel {
   constructor(data) {
     this.data = data;
