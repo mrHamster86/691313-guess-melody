@@ -18,6 +18,6 @@ export default class WelcomePresenter {
   }
 
   bind() {
-    this.view.onWelcomeBtn = () => App.showGame(App.getGameQuestions());
+    this.view.onWelcomeBtn = () => App.showGame(App.gameQuestions);
   }
 }
