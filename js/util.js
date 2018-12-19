@@ -1,10 +1,12 @@
-const SECOND_PER_MINUTE = 60;
-const BODY = document.querySelector(`body`);
-const MAIN_ELEMENT = document.querySelector(`.main`);
+export const showModal = (element) => {
+  const BODY = document.querySelector(`body`);
 
-export const showModal = (element) => BODY.appendChild(element);
+  BODY.appendChild(element);
+};
 
 export const changeScreen = (element) => {
+  const MAIN_ELEMENT = document.querySelector(`.main`);
+
   MAIN_ELEMENT.innerHTML = ``;
   MAIN_ELEMENT.appendChild(element);
 };
@@ -21,6 +23,7 @@ export const getParentHasClass = (element, isHasClass) => {
 };
 
 export const timeConverter = (second) => {
+  const SECOND_PER_MINUTE = 60;
   const time = {};
 
   const minutes = `${Math.floor(second / SECOND_PER_MINUTE)}`;
