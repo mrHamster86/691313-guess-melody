@@ -14,7 +14,10 @@ export default class App {
     changeScreen(welcome.element);
 
     Loader.loadData()
-      .then((data) => this.gameQuestions = data)
+      .then((data) => {
+        this.gameQuestions = data;
+        return this.gameQuestions;
+      })
       .then(() => welcome.onWelcomeBtnActive())
       .catch(App.showError);
   }
@@ -41,7 +44,10 @@ export default class App {
     if (this.result.score > 0) {
       Loader.saveResults(this.result)
         .then(() => Loader.loadResults())
-        .then((statistics) => this.result.data = getGameResult(this.result, statistics))
+        .then((statistics) => {
+          this.result.data = getGameResult(this.result, statistics);
+          return this.result.data;
+        })
         .then(() => this.showResult(this.result))
         .catch(App.showError);
     } else {
