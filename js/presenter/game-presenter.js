@@ -133,11 +133,10 @@ export default class GamePresenter {
     this.gameContent.onPlayPause = (btn, audio) => this.audioControl(btn, audio);
 
     this.gameContent.onCheckbox = () => {
-      if (this.getAnswersGenre().length > 0) {
-        this.element.querySelector(`.game__submit`).disabled = false;
-      } else {
-        this.element.querySelector(`.game__submit`).disabled = true;
-      }
+      const isAnswers = this.getAnswersGenre().length > 0;
+      const btn = this.element.querySelector(`.game__submit`);
+
+      btn.disabled = isAnswers ? false : true;
     };
 
     this.modalConfirm.onCancel = () => {
