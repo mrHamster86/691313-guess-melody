@@ -1,7 +1,7 @@
 import {adaptServerData} from './data/adapt-server-data';
 
 const SERVER_URL = `https://es.dump.academy/guess-melody/`;
-const APP_ID = `310886111`;
+const APP_ID = `31081986`;
 
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {

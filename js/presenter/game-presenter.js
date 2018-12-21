@@ -109,6 +109,11 @@ export default class GamePresenter {
     delete this.btn;
   }
 
+  audioAdd(btn, audio) {
+    this.audio = audio;
+    this.btn = btn;
+  }
+
   audioPlaer(btn, audio) {
     if (btn.classList.contains(`track__button--play`)) {
       audio.play();
@@ -120,12 +125,17 @@ export default class GamePresenter {
   }
 
   audioControl(btn, audio) {
-    if (this.audio && this.audio !== audio) {
+    if (this.audio && this.audio === audio) {
+      this.audioPlaer(this.btn, this.audio);
+      this.audioClear();
+    } else if (this.audio && this.audio !== audio) {
+      this.audioPlaer(this.btn, this.audio);
+      this.audioAdd(btn, audio);
+      this.audioPlaer(this.btn, this.audio);
+    } else {
+      this.audioAdd(btn, audio);
       this.audioPlaer(this.btn, this.audio);
     }
-    this.btn = btn;
-    this.audio = audio;
-    this.audioPlaer(this.btn, this.audio);
   }
 
   bind() {

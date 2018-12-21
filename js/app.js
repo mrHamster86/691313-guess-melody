@@ -10,21 +10,18 @@ import Loader from './loader';
 export default class App {
 
   static start() {
+    this.load().catch(this.showError);
+  }
+
+  static async load() {
     const welcome = new WelcomePresenter();
     changeScreen(welcome.element);
 
-    Loader.loadData()
-      .then((data) => {
-        this.gameQuestions = data;
-        return this.gameQuestions;
-      })
-      .then(() => welcome.onWelcomeBtnActive())
-      .catch(App.showError);
-  }
-
-  static showWelcome() {
-    const gameScreen = new WelcomePresenter();
-    changeScreen(gameScreen.element);
+    try {
+      this.gameQuestions = await Loader.loadData();
+    } finally {
+      welcome.onWelcomeBtnActive();
+    }
   }
 
   static showGame(data) {
@@ -38,22 +35,21 @@ export default class App {
     changeScreen(resultScreen.element);
   }
 
-  static showStats(result) {
+  static async showStats(result) {
     this.result = result;
 
     if (this.result.score > 0) {
-      Loader.saveResults(this.result)
-        .then(() => Loader.loadResults())
-        .then((statistics) => {
-          this.result.data = getGameResult(this.result, statistics);
-          return this.result.data;
-        })
-        .then(() => this.showResult(this.result))
-        .catch(App.showError);
+      try {
+        await Loader.saveResults(this.result);
+        this.result.data = getGameResult(this.result, await Loader.loadResults());
+      } catch (e) {
+        App.showError(e);
+      }
     } else {
       this.result.data = getGameResult(this.result);
-      this.showResult(this.result);
     }
+
+    this.showResult(this.result);
   }
 
   static showError(error) {
