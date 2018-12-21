@@ -109,6 +109,11 @@ export default class GamePresenter {
     delete this.btn;
   }
 
+  audioAdd(btn, audio) {
+    this.audio = audio;
+    this.btn = btn;
+  }
+
   audioPlaer(btn, audio) {
     if (btn.classList.contains(`track__button--play`)) {
       audio.play();
@@ -120,12 +125,17 @@ export default class GamePresenter {
   }
 
   audioControl(btn, audio) {
-    if (this.audio && this.audio !== audio) {
+    if (this.audio && this.audio === audio) {
+      this.audioPlaer(this.btn, this.audio);
+      this.audioClear();
+    } else if (this.audio && this.audio !== audio) {
+      this.audioPlaer(this.btn, this.audio);
+      this.audioAdd(btn, audio);
+      this.audioPlaer(this.btn, this.audio);
+    } else {
+      this.audioAdd(btn, audio);
       this.audioPlaer(this.btn, this.audio);
     }
-    this.btn = btn;
-    this.audio = audio;
-    this.audioPlaer(this.btn, this.audio);
   }
 
   bind() {
@@ -133,11 +143,10 @@ export default class GamePresenter {
     this.gameContent.onPlayPause = (btn, audio) => this.audioControl(btn, audio);
 
     this.gameContent.onCheckbox = () => {
-      if (this.getAnswersGenre().length > 0) {
-        this.element.querySelector(`.game__submit`).disabled = false;
-      } else {
-        this.element.querySelector(`.game__submit`).disabled = true;
-      }
+      const isAnswers = this.getAnswersGenre().length > 0;
+      const btn = this.element.querySelector(`.game__submit`);
+
+      btn.disabled = isAnswers ? false : true;
     };
 
     this.modalConfirm.onCancel = () => {

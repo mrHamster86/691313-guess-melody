@@ -11,17 +11,6 @@ export const changeScreen = (element) => {
   MAIN_ELEMENT.appendChild(element);
 };
 
-export const getParentHasClass = (element, isHasClass) => {
-  element = element.parentElement;
-  while (!element.classList.contains(isHasClass)) {
-    element = element.parentElement;
-    if (!element) {
-      break;
-    }
-  }
-  return element;
-};
-
 export const timeConverter = (second) => {
   const SECOND_PER_MINUTE = 60;
   const time = {};
