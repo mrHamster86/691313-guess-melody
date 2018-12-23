@@ -33,4 +33,13 @@ export default class Loader {
     };
     return fetch(`${SERVER_URL}/stats/${APP_ID}`, requestSettings).then(checkStatus);
   }
+
+  static loadAudio(url) {
+    return new Promise((oncanplaythrough, onError) => {
+      const audio = new Audio();
+      audio.oncanplaythrough = () => oncanplaythrough(audio);
+      audio.onerror = () => onError(`Не удалось загрузить трек: ${url}`);
+      audio.src = url;
+    });
+  }
 }

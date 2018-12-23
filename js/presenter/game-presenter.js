@@ -6,6 +6,8 @@ import GenreView from '../view/game-genre-view';
 import ArtistView from '../view/game-artist-view';
 import App from '../app';
 
+const SECOND = 1000;
+
 export default class GamePresenter {
   constructor(model) {
     this.model = model;
@@ -63,7 +65,7 @@ export default class GamePresenter {
       this.model.tick();
       this._bonusTime++;
       this.updateHeader();
-      this._timer = setTimeout(() => this._tick(), 1000);
+      this._timer = setTimeout(() => this._tick(), SECOND);
     } else {
       this.timeOut();
     }

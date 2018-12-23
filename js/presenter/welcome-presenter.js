@@ -6,6 +6,7 @@ export default class WelcomePresenter {
   constructor() {
     this.state = INITIAL_GAME;
     this.view = new WelcomeView(this.state);
+    this.welcomeBtn = this.element.querySelector(`.welcome__button`);
     this.bind();
   }
 
@@ -14,10 +15,14 @@ export default class WelcomePresenter {
   }
 
   onWelcomeBtnActive() {
-    this.element.querySelector(`.welcome__button`).disabled = false;
+    this.welcomeBtn.disabled = false;
   }
 
   bind() {
-    this.view.onWelcomeBtn = () => App.showGame(App.gameQuestions);
+    this.view.onWelcomeBtn = () => {
+      if (!this.welcomeBtn.disabled) {
+        App.showGame(App.gameQuestions);
+      }
+    };
   }
 }
