@@ -4,9 +4,11 @@ const LEVELS = INITIAL_GAME.levels;
 const BONUS_TIME = INITIAL_GAME.bonusTime;
 const LOSING_SCORE = -1;
 const INCORRECT_POINTS = -2;
+const CORRECT_POINT = 1;
+const DOUBLE_POINT = 2;
 
 const correctPoints = (time) => {
-  return (time >= BONUS_TIME) ? 1 : 2;
+  return (time >= BONUS_TIME) ? CORRECT_POINT : DOUBLE_POINT;
 };
 
 const calculateScore = (answers) => {

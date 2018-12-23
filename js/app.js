@@ -18,9 +18,8 @@ export default class App {
     changeScreen(welcome.element);
     try {
       this.gameQuestions = await Loader.loadData();
-      this.audioList = this.getAudioList(this.gameQuestions);
-      this.audio = await Promise.all(Array.from(this.audioList).map((it) => Loader.loadAudio(it)));
-
+      this.audioList = Array.from(this.getAudioList(this.gameQuestions));
+      this.audio = await Promise.all(this.audioList.map((it) => Loader.loadAudio(it)));
     } finally {
       welcome.onWelcomeBtnActive();
     }
