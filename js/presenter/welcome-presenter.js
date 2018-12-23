@@ -23,6 +23,6 @@ export default class WelcomePresenter {
       if (!this.welcomeBtn.disabled) {
         App.showGame(App.gameQuestions);
       }
-    }
+    };
   }
 }

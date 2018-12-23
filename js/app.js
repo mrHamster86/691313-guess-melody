@@ -20,7 +20,7 @@ export default class App {
       this.gameQuestions = await Loader.loadData();
       this.audioList = this.getAudioList(this.gameQuestions);
 
-      for(const src of this.audioList) {
+      for (const src of this.audioList) {
         await Loader.loadAudio(src);
       }
     } finally {
@@ -42,15 +42,15 @@ export default class App {
   static getAudioList(gameQuestions) {
     const audioList = new Set();
 
-    for(const level of gameQuestions) {
-      if (level.type === 'artist') {
-        audioList.add(level.src)
+    for (const level of gameQuestions) {
+      if (level.type === `artist`) {
+        audioList.add(level.src);
       } else {
         level.answers.forEach((answer) => audioList.add(answer.src));
       }
     }
     return audioList;
-  };
+  }
 
   static async showStats(result) {
     this.result = result;
