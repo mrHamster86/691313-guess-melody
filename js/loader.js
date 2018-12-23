@@ -13,6 +13,15 @@ const checkStatus = (response) => {
 
 const toJSON = (res) => res.json();
 
+// const audioLoader = (url) => {
+//   return new Promise((onLoad, onError) => {
+//     const audio = new Audio();
+//     audio.onload = () => onLoad(audio);
+//     audio.onerror = () => onError(`Не удалось загрузить трек: ${url}`);
+//     audio.src = url;
+//   });
+// };
+
 export default class Loader {
   static loadData() {
     return fetch(`${SERVER_URL}/questions`).then(checkStatus).then(toJSON).then(adaptServerData);
@@ -32,5 +41,9 @@ export default class Loader {
       method: `POST`
     };
     return fetch(`${SERVER_URL}/stats/${APP_ID}`, requestSettings).then(checkStatus);
+  }
+
+  static loadAudio(src) {
+    return new Audio(src);
   }
 }

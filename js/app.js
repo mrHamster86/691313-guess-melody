@@ -16,9 +16,13 @@ export default class App {
   static async load() {
     const welcome = new WelcomePresenter();
     changeScreen(welcome.element);
-
     try {
       this.gameQuestions = await Loader.loadData();
+      this.audioList = this.getAudioList(this.gameQuestions);
+
+      for(const src of this.audioList) {
+        await Loader.loadAudio(src);
+      }
     } finally {
       welcome.onWelcomeBtnActive();
     }
@@ -34,6 +38,19 @@ export default class App {
     const resultScreen = new ResultPresenter(data);
     changeScreen(resultScreen.element);
   }
+
+  static getAudioList(gameQuestions) {
+    const audioList = new Set();
+
+    for(const level of gameQuestions) {
+      if (level.type === 'artist') {
+        audioList.add(level.src)
+      } else {
+        level.answers.forEach((answer) => audioList.add(answer.src));
+      }
+    }
+    return audioList;
+  };
 
   static async showStats(result) {
     this.result = result;
