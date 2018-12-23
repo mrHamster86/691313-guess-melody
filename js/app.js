@@ -19,10 +19,8 @@ export default class App {
     try {
       this.gameQuestions = await Loader.loadData();
       this.audioList = this.getAudioList(this.gameQuestions);
+      this.audio = await Promise.all(Array.from(this.audioList).map((it) => Loader.loadAudio(it)));
 
-      for (const src of this.audioList) {
-        await Loader.loadAudio(src);
-      }
     } finally {
       welcome.onWelcomeBtnActive();
     }
